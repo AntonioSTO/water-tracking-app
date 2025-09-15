@@ -110,16 +110,16 @@ Seu navegador abrirá o aplicativo, pronto para uso!
 
 Este projeto foi construído como um exercício prático para solidificar conhecimentos em:
 
-    Criação de uma API RESTful com Flask.
+    - Criação de uma API RESTful com Flask.
 
-    Modelagem e gerenciamento de um banco de dados com SQLAlchemy.
+    - Modelagem e gerenciamento de um banco de dados com SQLAlchemy.
 
-    Implementação de um sistema de autenticação seguro com senhas com hash e tokens JWT.
+    - Implementação de um sistema de autenticação seguro com senhas com hash e tokens JWT.
 
-    Desenvolvimento de uma interface de usuário interativa com JavaScript puro (Vanilla JS).
+    - Desenvolvimento de uma interface de usuário interativa com JavaScript puro (Vanilla JS).
 
-    Comunicação assíncrona entre cliente e servidor usando a API Fetch.
+    - Comunicação assíncrona entre cliente e servidor usando a API Fetch.
 
-    Organização de um projeto Full Stack em uma arquitetura desacoplada.
+    - Organização de um projeto Full Stack em uma arquitetura desacoplada.
 
-    Resolução de problemas comuns como CORS e gerenciamento de estado no lado do cliente.
+    - Resolução de problemas comuns como CORS e gerenciamento de estado no lado do cliente.
