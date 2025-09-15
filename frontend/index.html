@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💧 Water Tracker</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="/manifest.json">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main class="app-container">
+    <header>
+      <h1>Hoje</h1>
+      <div>
+          <a href="statistics.html" class="icon-btn">
+              <svg class="icon-stats"><use href="#icon-stats"></use></svg>
+          </a>
+          <button id="settings-btn" class="icon-btn">
+              <svg class="icon-settings"><use href="#icon-settings"></use></svg>
+          </button>
+          <button id="logout-btn" class="icon-btn">
+              <svg class="icon-logout"><use href="#icon-logout"></use></svg>
+          </button>
+      </div>
+    </header>
+
+    <div id="settings-modal" class="modal-overlay">
+    <div class="modal-content">
+      <h2>Configurações</h2>
+      <div class="form-group">
+        <label for="goal-input">Meta diária de água (ml)</label>
+        <input type="number" id="goal-input">
+      </div>
+      <button id="save-settings-btn">Salvar</button>
+      <button id="close-settings-btn" class="close-btn">Fechar</button>
+    </div>
+    </div>  
+
+    <div class="progress-ring-container">
+      <svg class="progress-ring" width="220" height="220">
+        <defs>
+            <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:var(--primary-light);stop-opacity:1" />
+                <stop offset="100%" style="stop-color:var(--primary-color);stop-opacity:1" />
+            </linearGradient>
+        </defs>
+        <circle class="progress-ring__background" stroke-width="15" fill="transparent" r="100" cx="110" cy="110"/>
+        <circle id="progress-ring-fill" class="progress-ring__fill" stroke-width="15" fill="transparent" r="100" cx="110" cy="110"/>
+      </svg>
+      <div class="progress-text">
+        <span id="consumed" class="consumed-amount">0</span>
+        <span class="goal-text">/ <span id="goalDisplay">2000</span> ml</span>
+      </div>
+    </div>
+    
+    <button id="add-water-btn" class="add-btn">+</button>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>🔥 Streak Atual</h3>
+        <p><span id="streak">0</span> dias</p>
+      </div>
+      <div class="stat-card">
+        <h3>🏆 Melhor Streak</h3>
+        <p><span id="bestStreak">0</span></p>
+      </div>
+    </div>
+    
+    </main>
+
+  <div id="add-water-modal" class="modal-overlay">
+    <div class="modal-content">
+      <h2>Adicionar Água</h2>
+      <div class="modal-actions">
+        <button data-amount="250">+250ml</button>
+        <button data-amount="500">+500ml</button>
+        <button data-amount="750">+750ml</button>
+      </div>
+      <button id="close-modal-btn" class="close-btn">Fechar</button>
+    </div>
+  </div>
+  <svg style="display: none;">
+  <defs>
+    <symbol id="icon-stats" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 3v18h18"/>
+      <path d="M7 12l5-5 4 4 5-5"/>
+    </symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"></circle>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+    </symbol>
+    <symbol id="icon-logout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+      <polyline points="16 17 21 12 16 7"></polyline>
+      <line x1="21" y1="12" x2="9" y2="12"></line>
+    </symbol>
+  </defs>
+</svg>
+  <script src="js/script.js"></script>
+</body>
+</html>

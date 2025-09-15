@@ -1,0 +1,319 @@
+:root {
+  --primary-color: #007BFF;
+  --primary-light: #58AFFF;
+  --background-color: #F0F4F8;
+  --card-background: #FFFFFF;
+  --text-primary: #1A2530;
+  --text-secondary: #7A8C99;
+  --ring-background: #E8EEF3;
+  --success-color: #28A745;
+  --fail-color: #DC3545;
+  --shadow: 0 8px 24px rgba(0, 123, 255, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: linear-gradient(160deg, #64c4ed 0%, #c2e9fb 100%);
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+header h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+}
+#settings-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.progress-ring-container {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 30px;
+}
+.progress-ring {
+  transform: rotate(-90deg);
+}
+.progress-ring__background, .progress-ring__fill {
+  transition: stroke-dashoffset 0.8s ease-out;
+}
+.progress-ring__background {
+  stroke: var(--ring-background);
+}
+.progress-ring__fill {
+  stroke: url(#progress-gradient);
+  stroke-linecap: round;
+}
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.consumed-amount {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.goal-text {
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Botão Principal de Adicionar */
+.add-btn {
+  background: linear-gradient(45deg, var(--primary-light), var(--primary-color));
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 36px;
+  line-height: 40px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 30px;
+}
+.add-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 30px rgba(0, 123, 255, 0.2);
+}
+
+/* Grid de Estatísticas */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+.stat-card {
+  background-color: var(--card-background);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+.stat-card h3 {
+  margin: 0 0 5px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.stat-card p {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Histórico */
+.history {
+  background-color: var(--card-background);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+.history h3 {
+    margin: 0 0 15px;
+    text-align: left;
+    font-size: 16px;
+}
+.history-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+.day-box {
+  height: 40px;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.day-success { background: var(--success-color); }
+.day-fail { background: var(--fail-color); }
+.day-empty { background: var(--ring-background); }
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+}
+.modal-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.modal-content {
+  background-color: var(--card-background);
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 350px;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+.modal-overlay.visible .modal-content {
+  transform: scale(1);
+}
+.modal-content h2 { margin-top: 0; }
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.modal-actions button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid var(--primary-color);
+  background-color: transparent;
+  color: var(--primary-color);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.modal-actions button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+#custom-amount {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid var(--ring-background);
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 16px;
+}
+#confirm-custom-add {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+.close-btn {
+    margin-top: 15px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  margin-left: 10px;
+  /* Garante que o padding não afete o alinhamento */
+  padding: 5px; 
+  line-height: 1;
+}
+
+#settings-modal .form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+#settings-modal label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#settings-modal input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--ring-background);
+    font-size: 16px;
+}
+
+#save-settings-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.icon-btn svg {
+  width: 26px;
+  height: 26px;
+  vertical-align: middle;
+  transition: all 0.3s ease-in-out; /* Transição mais suave */
+}
+
+.icon-btn:hover svg[class*="icon-stats"] {
+  transform: translateY(-2px); /* Pula um pouquinho para cima */
+}
+
+.icon-btn:hover svg[class*="icon-settings"] {
+  transform: rotate(90deg); /* Gira 90 graus */
+}
+
+.icon-btn:hover svg[class*="icon-logout"] {
+  transform: translateX(3px); /* Move a seta um pouco para a direita */
+}
