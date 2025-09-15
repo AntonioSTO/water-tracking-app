@@ -37,7 +37,7 @@ Este projeto é um aplicativo de rastreamento de consumo de água (Water Tracker
 ## 📁 Estrutura do Projeto
 
 O projeto é organizado em uma arquitetura desacoplada, com o frontend e o backend em pastas separadas para uma clara separação de responsabilidades.
-
+```
 water_tracker/
 ├── frontend/
 │   ├── css/
@@ -47,7 +47,7 @@ water_tracker/
 |   ├── app.py
 |   └── database.db
 └── requirements.txt
-
+```
 ## 🚀 Como Executar o Projeto
 
 Siga os passos abaixo para configurar e rodar a aplicação em seu ambiente local.
