@@ -59,7 +59,7 @@ Siga os passos abaixo para configurar e rodar a aplicação em seu ambiente loca
 
 #### **1. Clone o Repositório**
 ```bash
-git clone [https://github.com/seu-usuario/water-tracker.git](https://github.com/AntonioSTO/water-tracker.git)
+git clone https://github.com/AntonioSTO/water-tracking-app.git
 cd water-tracker
 ```
 
